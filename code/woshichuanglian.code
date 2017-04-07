@@ -1,0 +1,67 @@
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-heading ">卧室窗帘</div>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered bootstrap-datatable datatable"> 
+				 <tbody>
+					<tr>
+						<td>开关</td>
+						<td>
+							<label id="switch8" class="switch switch-success" >
+							<?php
+								$i = "0008";
+								if($StateData[$i] == 1){
+									echo '<input type="checkbox" id="'.$i.'"';
+									echo ' class="switch-input" onclick="dealEvent(';
+									echo "'".$i."'";
+									echo ')" checked>';
+								}
+								else{
+									echo '<input type="checkbox" id="'.$i.'"';
+									echo ' class="switch-input" onclick="dealEvent(';
+									echo "'".$i."'";
+									echo ')">';
+								}
+							?>
+							<span class="switch-label" data-on="On" data-off="Off"></span>
+							<span class="switch-handle"></span>
+							</label>
+						</td>
+						
+					</tr>	
+					<tr>
+						<td>智能调节室内亮度</td>
+						<td>
+							<label id="switch9" class="switch switch-success" >
+							<?php
+								$i = "0009";
+								if($StateData[$i] == 1){
+									echo '<input type="checkbox" id="'.$i.'"';
+									echo ' class="switch-input" onclick="dealEvent(';
+									echo "'".$i."'";
+									echo ')" checked>';
+								}
+								else{
+									echo '<input type="checkbox" id="'.$i.'"';
+									echo ' class="switch-input" onclick="dealEvent(';
+									echo "'".$i."'";
+									echo ')">';
+								}
+							?>
+							<span class="switch-label" data-on="On" data-off="Off"></span>
+							<span class="switch-handle"></span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td width="38%">
+							阈值(0-1000)
+						</td>
+						<td id="light_td" width="62%">
+						</td>
+					</tr>
+				</tbody>
+			</table>        
+		</div>
+	</div>
+</div>

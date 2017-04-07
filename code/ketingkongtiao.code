@@ -1,0 +1,126 @@
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-heading ">客厅空调</div>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered bootstrap-datatable datatable"> 
+				 <tbody>
+					<tr>
+						<td>开关</td>
+						<td>
+							<label id="switch2" class="switch switch-success" >
+							<?php
+								$i = "0002";
+								if($StateData[$i] == 1){
+									echo '<input type="checkbox" id="'.$i.'"';
+									echo ' class="switch-input" onclick="dealEvent(';
+									echo "'".$i."'";
+									echo ')" checked>';
+								}
+								else{
+									echo '<input type="checkbox" id="'.$i.'"';
+									echo ' class="switch-input" onclick="dealEvent(';
+									echo "'".$i."'";
+									echo ')">';
+								}
+							?>
+							<span class="switch-label" data-on="On" data-off="Off"></span>
+							<span class="switch-handle"></span>
+							</label>
+						</td>
+					</tr>	
+					<tr>
+						<td>温度</td>
+						<td>
+							<input type="button" onclick="dealEvent('000206')" id="000206" value="升高" class="btn btn-info">
+							<input type="button" onclick="dealEvent('000207')" id="000207" value="降低" class="btn btn-info">
+						</td>
+					</tr>	
+					<tr>
+						<td>风向</td>
+						<td>
+							<div data-toggle="buttons" class="btn-group">
+								<label class="btn btn-info active" onclick="dealEvent('000212')" id="000212">
+								<input type="radio">
+								自动
+								</label>
+
+								<label class="btn btn-info" onclick="dealEvent('000213')" id="000213">
+								<input type="radio">
+								手动
+								</label>
+							</div>
+						</td>
+					</tr>	
+					<tr>
+						<td>风速</td>
+						<td>
+							<div data-toggle="buttons" class="btn-group">
+								<label class="btn btn-info active" onclick="dealEvent('000208')" id="000208">
+								<input type="radio">
+								自动
+								</label>
+
+								<label class="btn btn-info" onclick="dealEvent('000209')" id="000209">
+								<input type="radio">
+								一级
+								</label>
+								
+								<label class="btn btn-info" onclick="dealEvent('000210')" id="000210">
+								<input type="radio">
+								二级
+								</label>
+								
+								<label class="btn btn-info" onclick="dealEvent('000211')" id="000211">
+								<input type="radio">
+								三级
+								</label>
+							</div>
+						</td>
+					</tr>	
+					<tr>
+						<td>模式</td>
+						<td>
+							<div data-toggle="buttons" class="btn-group">
+								<label class="btn btn-info active" onclick="dealEvent('000214')" id="000214">
+								<input type="radio">
+								自动
+								</label>
+
+								<label class="btn btn-info" onclick="dealEvent('000202')" id="000202">
+								<input type="radio">
+								制冷
+								</label>
+								
+								<label class="btn btn-info" onclick="dealEvent('000203')" id="000203">
+								<input type="radio">
+								除湿
+								</label>
+								
+								<label class="btn btn-info" onclick="dealEvent('000204')" id="000204">
+								<input type="radio">
+								送风
+								</label>	
+								
+								<label class="btn btn-info" onclick="dealEvent('000205')" id="000205">
+								<input type="radio">
+								制暖
+								</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							设置温度阈值<br>(17~30摄氏度)
+						</td>
+						<td>
+							<p id="temp_td"></p>
+							<input id="tempvalue1" type="text" style="width:60px" placeholder="min"></input>
+							<input id="tempvalue2" type="text" style="width:60px" placeholder="max"></input>
+							<button class="btn btn-primary btn-md" id="settemp" onclick="setTemp()">保存</button>
+						</td>
+					</tr>								
+				</tbody>
+			</table>        
+		</div>
+	</div>
+</div>

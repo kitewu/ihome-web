@@ -1,0 +1,35 @@
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-heading ">客厅灯</div>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered bootstrap-datatable datatable"> 
+				 <tbody>
+					<tr>
+						<td>开关</td>
+						<td>
+							<label id="switch1" class="switch switch-success" >
+							<?php
+								$i = "0001";
+								if($StateData[$i] == 1){
+									echo '<input type="checkbox" id="'.$i.'"';
+									echo ' class="switch-input" onclick="dealEvent(';
+									echo "'".$i."'";
+									echo ')" checked>';
+								}
+								else{
+									echo '<input type="checkbox" id="'.$i.'"';
+									echo ' class="switch-input" onclick="dealEvent(';
+									echo "'".$i."'";
+									echo ')">';
+								}
+							?>
+							<span class="switch-label" data-on="On" data-off="Off"></span>
+							<span class="switch-handle"></span>
+							</label>
+						</td>
+					</tr>						  
+				</tbody>
+			</table>        
+		</div>
+	</div>
+</div>

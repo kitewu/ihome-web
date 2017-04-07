@@ -1,0 +1,93 @@
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="plugins/ionslider/ion.rangeSlider.min.js"></script>
+	<script src="plugins/bootstrap-slider/bootstrap-slider.js"></script>
+	<script>
+		var light_value = "100;500";
+		window.onload = function(){
+			listenClickUpEvent();
+			flush();
+		};
+		/*监听窗口的点击事件,鼠标点击结束时设置亮度阈值*/
+		function listenClickUpEvent(){
+			$(function(){
+				document.onmouseup = function(event){ 
+					if(event.button == 0){
+						if(document.getElementById("lightvalue").value != light_value){
+							light_value = document.getElementById("lightvalue").value;
+							setLight();
+						}				
+					}
+				};
+			});
+		}
+		/*实时刷新*/
+		function flush(){
+			var id = ['0001','0002','0003','0004','0005','0006','0008', '0009'];
+			$.ajax( {
+				type : "post",
+				dataType : "json",
+				url : './backdeal/GetSwitchStat.php',
+				success : function(data) {
+					for(var i = 0; i < id.length; i++){
+						if(data.datas[id[i]] == 1)
+							document.getElementById(id[i]).checked = true;
+						else
+							document.getElementById(id[i]).checked = false;
+					}
+					
+					//重新填充温度阈值
+					var temp_str = '  当前：摄氏度' + data.temp_min + "~" + data.temp_max + "。设置新的： ";
+					$("#temp_td").empty();
+					$("#temp_td").append(temp_str);
+					
+					//重新填充亮度阈值
+					$("#light_td").empty();
+					$("#light_td").append('<input hidden="true" class="irs-hidden-input" id="lightvalue" type="text" name="lightvalue" value="" readonly=""></input>');
+					$(function () {
+						$('.slider').slider();
+						$("#lightvalue").ionRangeSlider({
+						  min: 0,
+						  max: 1000,
+						  from: data.light_min,
+						  to: data.light_max,
+						  type: 'double',
+						  step: 1,
+						  prefix: "",
+						  prettify: false,
+						  hasGrid: true
+						});
+					  });
+				}
+			});
+		}
+		window.setInterval(flush, 2000);
+		
+		/*设置开关*/
+		function dealEvent(value) {
+			var state = document.getElementById(value).checked;
+			$.post("./backdeal/SetState.php", {deviceID: value, deviceState: state},
+				function(data) {
+					alert(data);
+				});
+		}
+		/*设置亮度阈值*/
+		function setLight() {
+			var values = document.getElementById("lightvalue").value.split(";");
+			$.post("./backdeal/SetLight.php", {max: values[1], min: values[0]},
+				function(data) {
+			});
+		}
+		/*设置温度阈值*/
+		function setTemp() {
+			var value1 = document.getElementById("tempvalue1").value;
+			var value2 = document.getElementById("tempvalue2").value;
+			$.post("./backdeal/SetTemp.php", {max: value2, min: value1},
+				function(data) {
+					alert(data);
+				});
+		}
+	</script>
+	
+</body>
+</html>
